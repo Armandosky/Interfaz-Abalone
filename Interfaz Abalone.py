@@ -122,10 +122,12 @@ def dispersion_atipicos(dato1, dato2):
     plot.xlabel(dato1)
     plot.ylabel(dato2)
 
-def modelounoauno(tamañoentrenamiento,X,Y):
+def modelounoauno(dato1, dato2):
     archivo='abalone.csv'
     pepito = pd.read_csv(archivo)
     pepito.columns=["Sex","Length","Diameter","Height","Whole weight","Shucked weight","Viscera weight","Shell weight","Rings"]
+    X = [str(dato1)]
+    Y = [str(dato2)]
     X_train, X_test, y_train, y_test = train_test_split(
                                         X,
                                         Y,
@@ -138,12 +140,12 @@ def modelounoauno(tamañoentrenamiento,X,Y):
     
 #modelo uno a muchos
 #x es una lista
-def modelounoamuchos(tamañoentrenamiento,X,Y):
+def modelounoamuchos(dato1, dato2):
     archivo='abalone.csv'
     pepito = pd.read_csv(archivo)
     pepito.columns=["Sex","Length","Diameter","Height","Whole weight","Shucked weight","Viscera weight","Shell weight","Rings"]
-    X = X.drop(['sex'], axis=1)
-    Y = Y[0:len(X)]
+    X = [str(dato1)]
+    Y = [str(dato2)]
     X_train, X_test, y_train, y_test = train_test_split(
                                         X,
                                         Y,
@@ -206,6 +208,7 @@ def graficaNormal():
             canvas.get_tk_widget().place(x=500,y=50)
     else:
         messagebox.showinfo(message="Selección incorrecta", title="Error")
+        
 
 def graficaAtipicos():
     if(len(textoFinal)==1):
